@@ -10,7 +10,7 @@ These instructions will get you a copy of the package and allows it to run on yo
 #### Installing
 Install the package
 ```R
-devtools::install_github("unimi-dse\09ea9da6")
+devtools::install_github("unimi-dse/09ea9da6")
 ```
 Load the package
 ```R
