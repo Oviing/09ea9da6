@@ -35,6 +35,7 @@ To access the documenation for each function please type the following comands
 ?meteroites.mean
 ?meteroites.min
 ?meteroites.max
+?runApp(GUI_Meteroites)
 ```
 ### Warning
 Some function depends on other functions. For further information please read the documentation.
