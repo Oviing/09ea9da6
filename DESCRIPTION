@@ -1,0 +1,27 @@
+Package: meteroites
+Type: Package
+Title: Analysing of confirmed meteroites, which landed on earth 
+Version: 0.1.1
+Author@R: c(person("Joel", "Kischkel", role = c("aut", "cre"),
+          email = "joel.kischkel@icloud.com"))
+Author: Joel Kischkel [aut, cre]
+Maintainer: Joel Kischkel <joel.kischkel@icloud.com>
+Description: This package analyse and visualize registered impacts of meteroites on the earth.
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+Depends: devtools,
+          usethis,
+          httr,
+          readr,
+          stringdist,
+          parallel,
+          ggplot2,
+          maps,
+          mapproj,
+          roxygen2,
+          shiny,
+          grDevices,
+          stats,
+          R (>= 3.1.0)
+RoxygenNote: 7.0.2
