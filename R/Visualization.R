@@ -11,10 +11,12 @@
 #'@return a histogram with the included mass between 0 and 10000.
 #'@export
 meteroites.hist <- function(l){
+  a <- meteroitesapi()
   ggplot() +
-    geom_histogram(data = meteroitesData, aes(x = meteroitesData$mass), fill = "blue", colour = "white", show.legend = TRUE, na.rm = TRUE) +
+    geom_histogram(data = a, aes(x = a$mass), fill = "blue", colour = "white", show.legend = TRUE, na.rm = TRUE) +
     xlim(c(0,l)) +
-    labs(x = "Mass", y = "Count")
+    labs(x = "Mass", y = "Count") +
+    theme_minimal()
 }
 
 #Plot of the classes
@@ -32,9 +34,11 @@ meteroites.hist <- function(l){
 #'\link{clusterComputation}
 #'@export
 meteroites.plotClass <- function(){
+  a <- clusterComputation()
   ggplot()+
-    geom_col(data= classDF, aes(x = classDF$classMeteorites, y = classDF$classResultVector), fill = "blue", colour = "white") +
-    labs(x = "Classes", y = "Numbers")
+    geom_col(data= a, aes(x = a$classMeteorites, y = a$classResultVector), fill = "blue", colour = "white") +
+    labs(x = "Classes", y = "Numbers") +
+    theme_minimal()
 }
 
 #Plot location
@@ -48,12 +52,13 @@ meteroites.plotClass <- function(){
 #'@export
 meteroites.world <- function(){
   world <- map_data("world")
+  a <- meteroitesapi()
   ggplot()+
     geom_polygon(data = world, mapping = aes(x = world$long, y = world$lat, group = group), fill = "lightgrey", colour = "white") +
-    geom_point(data = meteroitesData, aes(x = meteroitesData$reclong, y = meteroitesData$reclat), colour = "Blue", alpha = 0.5) +
+    geom_point(data = a, aes(x = a$reclong, y = a$reclat), colour = "Blue", alpha = 0.5) +
     labs(x = "Long", y = "Lat") +
     guides()+
-    theme(legend.position = "bottom")
+    theme_minimal()
 
 }
 #'@title meteroites.heatMap
@@ -67,7 +72,8 @@ meteroites.world <- function(){
 #'\link{distance}
 #'@export
 meteroites.heatMap <- function(){
-  heatmap(distanceMatrix, scale = "none", col = rainbow(256))
+  a <- as.matrix(distance())
+  heatmap(a, scale = "none", col = rainbow(256))
 }
 
 

@@ -10,17 +10,16 @@ clusterComputation()
 \item{No}{additional arguments are needed}
 }
 \description{
-clusterComputation is a function to cluster the different distances from the \code{distance} function together.
+The \code{clusterComputation} function cluster the different subtypes of meteroites together.
 To speed up the code the function is using parallel computation.
-The function first counts the number of columns of the distanceMatrixDF to determine the number of repetitions.
+In the beginning the function defines an goal character vector with all main types of meteroites.
+Then it creates an data frame with all string distances between subtype and main type of meteroite.
+The function first counts the number of columns of the string distance data frame to determine the number of repetitions.
 It then determine the number of cores in the computer and builds a cluster on each core with respect to one free core.
-After this the function exports \code{cluster}, \code{distanceMatrixDF}, \code{numberOfColumns}, \code{emptyClassMeteroites}
-and \code{classMeteroites} to each core.
 The function uses @li\code{\link{[parallel]parSapply}} to parallel the computation.
-The function returns the \code{classDF} dat frame with the classes and the number of meteroites in each category and stops automatically the cluster.
+The function returns the \code{classDF} data frame with the classes and the number of meteroites in each category and stops automatically the cluster.
 }
 \seealso{
 \code{\link[parallel]{parSapply()}},
-\code{\link{cluster()}},
 \code{\link{distance()}}
 }

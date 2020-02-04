@@ -1,18 +1,14 @@
 #Cluster analysis of the meteroites
 #'@title distance
 #'@description
-#'The distance function computes the string distances between the classes column of the meteroitesData data frame and pre defined meteroite types.
+#'The distance function computes the string distances between main and subtypes of meteroites.
 #'For measuring the distance between to strings the Jaro-Winker distance is used.
 #'A value of 1 means there is no similarity between two strings.
 #'Vice versa a value of 0 means the similarity between two strings is 100%
-#'
-#'The function itself creates four variable
-#'
 #'\code{classMeteroites} contains the general classes of different types of meteroites.
 #'\code{vectorClass} is a vector containing charackters, sliced out of the meteroitesData file.
-#'\code{distanceMatrix} a matrix ccrated by the stringdistmatrix function
-#'\code{distanceMatrixDF} a data frame created from the distanceMatrix variable
-#'
+#'\code{distanceMatrix} a matrix ccrated by the stringdistmatrix function.
+#'\code{distanceMatrixDF} a data frame created from the distanceMatrix variable.
 #'@usage
 #'distance()
 #'@param
@@ -20,102 +16,81 @@
 #'@export
 #1. builds a vector with the general classes of different types of meteroites
 distance <- function(){
-  classMeteorites <<- c("CM", "CO", "CI", "CR", "CV", "Diagonite", "EH", "EL","Eucrite", "Acapulcoite", "Achondrite", "Angrite", "Aubrite", "H", "Iron", "L", "Martian", "Mesosiderite", "Others")
-  vectorClass <- c(meteroitesData$recclass)
+  mData <- meteroitesapi()
+  classMeteorites <- c("CM", "CO", "CI", "CR",
+                       "CV", "Diagonite", "EH", "EL",
+                       "Eucrite", "Acapulcoite", "Achondrite", "Angrite",
+                       "Aubrite", "H", "Iron", "L", "Martian", "Mesosiderite", "Others")
+  vectorClass <- c(mData$recclass)
   #The aim is to compare how similar the classes of different meteroites are. To compare the similarity between classes the string distance will be measured
   #3. builds a distanz matrix between the different distances of the general classes in classMeteroites and the registered meteroites classes in the meteroitesDatas set saved in classVector
   #To measure the distance between the strings, the Jaro-Winker distance is used
   #If the distance is 1 no similarity exists. is the distance 0 the similarity is 100%
-  distanceMatrix <<- stringdistmatrix(classMeteorites, vectorClass, method = "jw", useNames = TRUE)
+  distanceMatrix <- stringdistmatrix(classMeteorites, vectorClass, method = "jw", useNames = TRUE)
   #4. converts the distancematrix into a data frame
-  distanceMatrixDF <<- as.data.frame(distanceMatrix)
-  emptyClassMeteroites <<- c(seq(0, 0 , length.out = length(classMeteorites)))
+  distanceMatrixDF <- as.data.frame(distanceMatrix)
   return(distanceMatrixDF)
-}
-
-
-#Using an algorithm to find the smallest value (highest similarity) in each column of the data frame
-
-#create empty  vector with the lenght of classMeteroites
-#used for the number of computation per column
-
-#Count the number of columns of the distanceMatrix
-#used for the number of repetition of the computation
-
-
-#Algorithm
-#'@title cluster
-#'@description
-#'cluster is a function to find the minimum value of each column.
-#'It creates an empty vector with the same length as the classMeteroites variable.
-#'It slice the distanceMatrixDF data frame into single columnns and comparing there every row with the minimum value.
-#'If the function find the minimum value it saves the position of the row into the emptyClassMeteroites vector.
-#'It returns the emptyClassMeteroites vector
-#'
-#'WARNING:
-#'Just works in combination with the clusterComputation function.
-#'@usage
-#'cluster(numberOfColumns)
-#'@param
-#'numberOfColumns Number of columns of the distanceMatrixDF data frame. The input will be automatically cenerated by the clusterComputation function.
-#'@export
-cluster <- function(numberOfColumns){
-
-  clusterColumn <- data.frame(distanceMatrixDF[, numberOfColumns])
-  i <- 1
-  while (length(classMeteorites) > i) {
-    if (clusterColumn[i,1] != min(clusterColumn[,1])){
-      print(i)
-    } else{
-      emptyClassMeteroites[i] <- emptyClassMeteroites[i] + 1
-      print(i)
-      print(emptyClassMeteroites)
-    }
-    i <- i + 1
-  }
-  return(emptyClassMeteroites)
 }
 
 #use parallel computation for the execution of the algorithm
 
 #'@title clusterComputation
 #'@description
-#'clusterComputation is a function to cluster the different distances from the \code{distance} function together.
+#'The \code{clusterComputation} function cluster the different subtypes of meteroites together.
 #'To speed up the code the function is using parallel computation.
-#'The function first counts the number of columns of the distanceMatrixDF to determine the number of repetitions.
+#'In the beginning the function defines an goal character vector with all main types of meteroites.
+#'Then it creates an data frame with all string distances between subtype and main type of meteroite.
+#'The function first counts the number of columns of the string distance data frame to determine the number of repetitions.
 #'It then determine the number of cores in the computer and builds a cluster on each core with respect to one free core.
-#'After this the function exports \code{cluster}, \code{distanceMatrixDF}, \code{numberOfColumns}, \code{emptyClassMeteroites}
-#'and \code{classMeteroites} to each core.
 #'The function uses @li\code{\link{[parallel]parSapply}} to parallel the computation.
-#'The function returns the \code{classDF} dat frame with the classes and the number of meteroites in each category and stops automatically the cluster.
+#'The function returns the \code{classDF} data frame with the classes and the number of meteroites in each category and stops automatically the cluster.
 #'@usage
 #'clusterComputation()
 #'@param
 #'No additional arguments are needed
 #'@seealso
 #'\code{\link[parallel]{parSapply()}},
-#'\code{\link{cluster()}},
 #'\code{\link{distance()}}
 #'@export
 
 clusterComputation <- function(){
-  numberOfColumns <<- c(1: ncol(distanceMatrix))
+  classMeteorites <- c("CM", "CO", "CI", "CR", "CV",
+                       "Diagonite", "EH", "EL","Eucrite", "Acapulcoite",
+                       "Achondrite", "Angrite", "Aubrite", "H",
+                       "Iron", "L", "Martian", "Mesosiderite", "Others")
+  resultDistance <- distance()
+  cluster <- function(numberOfColumns){
+    binaryVector <- c(seq(0, 0 , length.out = length(classMeteorites)))
+    clusterColumn <- data.frame(resultDistance[, numberOfColumns])
+    i <- 1
+    while (length(classMeteorites) > i) {
+      if (clusterColumn[i,1] != min(clusterColumn[,1])){
+      } else{
+        binaryVector[i] <- binaryVector[i] + 1
+      }
+      i <- i + 1
+    }
+    return(binaryVector)
+  }
+
+  numberOfColumns <- c(1: ncol(resultDistance))
   cores <- detectCores()
   buildCluster <- makeCluster(cores - 1)
-  clusterExport(buildCluster, "cluster")
-  clusterExport(buildCluster, "distanceMatrixDF")
-  clusterExport(buildCluster, "numberOfColumns")
-  clusterExport(buildCluster, "emptyClassMeteroites")
-  clusterExport(buildCluster, "classMeteorites")
-
+  clusterExport(buildCluster, "distance")
+  #clusterExport(buildCluster, "resultDistance")
+  #clusterExport(buildCluster, "numberOfColumns")
+  #clusterExport(buildCluster, "emptyClassMeteroites")
+  #clusterExport(buildCluster, "classMeteorites")
+  #clusterExport(buildCluster, "cluster")
   classResult <- parSapply(buildCluster, numberOfColumns, cluster)
-  classResultVector <<- rowSums(classResult)
-  classDF <<- data.frame(classMeteorites, classResultVector)
+  #classResult <- sapply(numberOfColumns, cluster)
+  classResultVector <- rowSums(classResult)
+  classDF <- data.frame(classMeteorites, classResultVector)
 
+  stopCluster(buildCluster)
 
   return(classDF)
 
-  stopCluster(buildCluster)
 }
 
 
