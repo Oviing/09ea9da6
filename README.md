@@ -1,5 +1,5 @@
 # 09ea9da6
-# Meteroites Package
+# Meteroites2 Package
 This package shows confirmed impacts of meteroites on earth. It is possible to analyse the different types of meteroites by mass and class of meteroites. Additionally the package allows to plot the locations of the meteroites around the world.
 ### Meteroites
 Meteroites are solid pieces from an object from outer space that survived the passage throught the atmosphere to reach the surface. 
@@ -14,21 +14,14 @@ devtools::install_github("unimi-dse/09ea9da6")
 ```
 Load the package
 ```R
-require(meteroites)
+require(meteroites2)
 ```
-#### First steps
-The first function wich should be executed is:
-```R
-meteroitesapi()
-```
-It loads all necessary data for further computation.
 #### Documenation and test
 To access the documenation for each function please type the following comands
 ```R
 ?meteroitesapi
 ?distance
 ?clusterComputation
-?cluster
 ?meteroites.hist
 ?meteroites.plotClass
 ?meteroites.world
@@ -36,14 +29,7 @@ To access the documenation for each function please type the following comands
 ?meteroites.mean
 ?meteroites.min
 ?meteroites.max
-?runApp(GUI_Meteroites)
+?meteroitesGUI
 ```
-### Warning
-Some function depends on other functions. For further information please read the documentation.
 
-##### Example
-```R
-distance()
-clusterComputation()
-```
-The distance function has to be executed before the clusterComputation function.
+
