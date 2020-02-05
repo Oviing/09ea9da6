@@ -16,7 +16,26 @@ Load the package
 ```R
 require(meteroites2)
 ```
-#### Documenation and test
+## Usage
+#### meteroitesapi
+```R
+meteroitesapi()
+```
+The meteroitesapi function downloads the data from the NASA SODA API.
+
+#### distance
+```R
+distance()
+```
+The distance function calculates the string distance between the main and subtypes of meteroites.
+
+#### clusterComputation
+```R
+clusterComputation()
+```
+The clusterComputation function is computes under a parallel approach the final data frame in wich categorie a meteroite belongs.
+
+## Documenation and test
 To access the documenation for each function please type the following comands
 ```R
 ?meteroitesapi
