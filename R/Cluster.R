@@ -42,7 +42,7 @@ distance <- function(){
 #'Then it creates an data frame with all string distances between subtype and main type of meteroite.
 #'The function first counts the number of columns of the string distance data frame to determine the number of repetitions.
 #'It then determine the number of cores in the computer and builds a cluster on each core with respect to one free core.
-#'The function uses @li\code{\link{[parallel]parSapply}} to parallel the computation.
+#'The function uses \code{\link{[parallel]parSapply}} to parallel the computation.
 #'The function returns the \code{classDF} data frame with the classes and the number of meteroites in each category and stops automatically the cluster.
 #'@usage
 #'clusterComputation()
@@ -77,13 +77,7 @@ clusterComputation <- function(){
   cores <- detectCores()
   buildCluster <- makeCluster(cores - 1)
   clusterExport(buildCluster, "distance")
-  #clusterExport(buildCluster, "resultDistance")
-  #clusterExport(buildCluster, "numberOfColumns")
-  #clusterExport(buildCluster, "emptyClassMeteroites")
-  #clusterExport(buildCluster, "classMeteorites")
-  #clusterExport(buildCluster, "cluster")
   classResult <- parSapply(buildCluster, numberOfColumns, cluster)
-  #classResult <- sapply(numberOfColumns, cluster)
   classResultVector <- rowSums(classResult)
   classDF <- data.frame(classMeteorites, classResultVector)
 
