@@ -33,7 +33,56 @@ The distance function calculates the string distance between the main and subtyp
 ```R
 clusterComputation()
 ```
-The clusterComputation function is computes under a parallel approach the final data frame in wich categorie a meteroite belongs.
+The clusterComputation function  computes the final data frame in wich categorie a meteroite belongs.
+
+#### meteroitesGUI
+```R
+meteroitesGUI()
+```
+Renders a shiny app, which is the frontend of the package.
+
+#### meteroites.hist
+```R
+meteroites.hist(l)
+```
+The meteroites.hist function computes a histogram of the mass, depending wich maximal mass should be included.
+
+#### meteroites.plotClass
+```R
+meteroites.plotClass()
+```
+The meteroites.plotClass function generates a plot out of the result from the clusterComputation function.
+
+#### meteroites.world
+
+```R
+meteroites.world()
+```
+The meteroites.world function plots all the location of founded meteroites on a world map.
+
+#### meteroites.heatMap
+```R
+meteroites.heatMap()
+```
+The meteroites.heatMap function creates a heatmap out of the string distances between main and subtypes of meteroites.
+
+#### meteroites.mean
+```R
+meteroites.mean()
+```
+The meteroites.mean function computes the mean value of the mass
+
+#### meteroites.min
+```R
+meteroites.min()
+```
+The meteroites.mean function computes the minimal value of the mass
+
+#### meteroites.max
+```R
+meteroites.max()
+```
+The meteroites.mean function computes the maximal value of the mass
 
 ## Documenation and test
 To access the documenation for each function please type the following comands
@@ -41,6 +90,7 @@ To access the documenation for each function please type the following comands
 ?meteroitesapi
 ?distance
 ?clusterComputation
+?meteroitesGUI
 ?meteroites.hist
 ?meteroites.plotClass
 ?meteroites.world
@@ -48,7 +98,6 @@ To access the documenation for each function please type the following comands
 ?meteroites.mean
 ?meteroites.min
 ?meteroites.max
-?meteroitesGUI
 ```
 
 
