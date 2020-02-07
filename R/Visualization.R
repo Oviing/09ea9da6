@@ -36,7 +36,7 @@ meteroites.hist <- function(l){
 meteroites.plotClass <- function(){
   a <- clusterComputation()
   ggplot()+
-    geom_col(data= a, aes(x = a$classMeteorites, y = a$classResultVector), fill = "blue", colour = "white") +
+    geom_col(data= a, aes(x = a$classMeteorites, y = a$numbers), fill = "blue", colour = "white") +
     labs(x = "Classes", y = "Numbers") +
     theme_minimal()
 }

@@ -42,7 +42,14 @@ ui <- material_page(
       color = "transparent",
       depth = 3,
       plotOutput("Classes")
-      )
+      ),
+
+    material_card(
+      title = "HeatMap",
+      color = "transparent",
+      depth = 3,
+      plotOutput("Heatmap")
+    )
   ),
 
   material_side_nav_tab_content(
