@@ -77,4 +77,3 @@ meteroites.heatMap <- function(){
 }
 
 
-

@@ -1,5 +1,5 @@
 #'@export
-server <- function(input, output) {
+server <- function(input, output, session) {
 
   output$Histogram <- renderPlot({
     mass_size <- input$mass_size + 1000
@@ -7,7 +7,9 @@ server <- function(input, output) {
   })
 
   output$World <- renderPlot({
+
     meteroites.world()
+
   })
 
   output$Classes <- renderPlot({
@@ -19,7 +21,9 @@ server <- function(input, output) {
   })
 
   output$Class <- renderTable(
+
     clusterComputation()
+
   )
 
 }
