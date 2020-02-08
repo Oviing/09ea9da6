@@ -66,23 +66,6 @@ meteroites.heatMap()
 ```
 The meteroites.heatMap function creates a heatmap out of the string distances between main and subtypes of meteroites.
 
-#### meteroites.mean
-```R
-meteroites.mean()
-```
-The meteroites.mean function computes the mean value of the mass
-
-#### meteroites.min
-```R
-meteroites.min()
-```
-The meteroites.mean function computes the minimal value of the mass
-
-#### meteroites.max
-```R
-meteroites.max()
-```
-The meteroites.mean function computes the maximal value of the mass
 
 ## Documenation and test
 To access the documenation for each function please type the following comands
