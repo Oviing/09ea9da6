@@ -78,9 +78,6 @@ To access the documenation for each function please type the following comands
 ?meteroites.plotClass
 ?meteroites.world
 ?meteroites.heatMap
-?meteroites.mean
-?meteroites.min
-?meteroites.max
 ```
 
 
