@@ -1,83 +1,49 @@
-#Cluster analysis of the meteroites
-#'@title distance
-#'@description
-#'The distance function computes the string distances between main and subtypes of meteroites.
-#'For measuring the distance between to strings the Jaro-Winker distance is used.
-#'A value of 1 means there is no similarity between two strings.
-#'Vice versa a value of 0 means the similarity between two strings is 100%
-#'\code{classMeteroites} contains the general classes of different types of meteroites.
-#'\code{vectorClass} is a vector containing charackters, sliced out of the meteroitesData file.
-#'\code{distanceMatrix} a matrix ccrated by the stringdistmatrix function.
-#'\code{distanceMatrixDF} a data frame created from the distanceMatrix variable.
-#'@usage
-#'distance()
-#'@param
-#'No additional arguments are used
-#'@export
-#1. builds a vector with the general classes of different types of meteroites
-distance <- function(){
-  mData <- meteroitesapi()
-  classMeteorites <- c("CM", "CO", "CI", "CR",
-                       "CV", "Diagonite", "EH", "EL",
-                       "Eucrite", "Acapulcoite", "Achondrite", "Angrite",
-                       "Aubrite", "H", "Iron", "L", "Martian", "Mesosiderite")
-  vectorClass <- c(mData$recclass)
-  #The aim is to compare how similar the classes of different meteroites are. To compare the similarity between classes the string distance will be measured
-  #3. builds a distanz matrix between the different distances of the general classes in classMeteroites and the registered meteroites classes in the meteroitesDatas set saved in classVector
-  #To measure the distance between the strings, the Jaro-Winker distance is used
-  #If the distance is 1 no similarity exists. is the distance 0 the similarity is 100%
-  distanceMatrix <- stringdist::stringdistmatrix(classMeteorites, vectorClass, method = "jw", useNames = TRUE)
-  #4. converts the distancematrix into a data frame
-  distanceMatrixDF <- as.data.frame(distanceMatrix)
-  return(distanceMatrix)
-}
-
-#use parallel computation for the execution of the algorithm
-
 #'@title clusterComputation
 #'@description
-#'The \code{clusterComputation} function cluster the different subtypes of meteroites together.
-#'To speed up the code the function is using parallel computation.
-#'In the beginning the function defines an goal character vector with all main types of meteroites.
-#'Then it creates an data frame with all string distances between subtype and main type of meteroite.
-#'The function first counts the number of columns of the string distance data frame to determine the number of repetitions.
-#'It then determine the number of cores in the computer and builds a cluster on each core with respect to one free core.
-#'The function uses \code{\link{[base]sapply}} to parallel the computation.
-#'The function returns the \code{classDF} data frame with the classes and the number of meteroites in each category and stops automatically the cluster.
+#'The \code{clusterComputation} function cluster the different subtypes of meteroites to the related main types together.
+#'The function contains a vector with all the main types of meteroites.
+#'The matrix from the \code{\link{distance}} function will be sliced into single columns.
+#'In each column the index position of the smalles value will be calculated.
+#'For each minimal value in an empty vector with the same length as the vector for the main types +1 value is added.
+#'The function returns a data frame made out of the main type of meteroites and the empty vector with the added values at the index position with the smalles value.
+#'The function uses \code{sapply} to loop the computation.
 #'@usage
 #'clusterComputation()
-#'@param
-#'No additional arguments are needed
 #'@seealso
-#'\code{\link[base]{sapply()}},
-#'\code{\link{distance()}}
+#'\code{\link[base]{sapply}},
+#'\code{\link{distance}}
 #'@export
 
 clusterComputation <- function(){
+
+  # Vector with the main types of meteroites
   classMeteorites <- c("CM", "CO", "CI", "CR", "CV",
                        "Diagonite", "EH", "EL","Eucrite", "Acapulcoite",
                        "Achondrite", "Angrite", "Aubrite", "H",
                        "Iron", "L", "Martian", "Mesosiderite")
+
+  # matrix with the string distances
   resultDistance <- distance()
-  ###
-  findmin <-function(i){
-    a <- which.min(i)
-    return(a)
-  }
-  ###
-  ###
+
+  # Algorithm to slice the data frame into a column and find the smalles value and put the index position into an empty vector
   binaryVector <- c(seq(0, 0 , length.out = length(classMeteorites)))
   findcol <- function(numberOfColumns){
     i <- resultDistance[, numberOfColumns]
-    u <- findmin(i)
+    u <- which.min(i)
     binaryVector[u] <- binaryVector[u] + 1
     return(binaryVector)
   }
 
+  # Counts how often the loop has to be excecuted
   numberOfColumns <- c(1: ncol(resultDistance))
 
+  # runs the loop for computation
   classResult <- sapply(numberOfColumns, findcol)
+
+  # sum up the rows to one single column
   numbers <- rowSums(classResult)
+
+  # creates a dat frame with main types and the number of meteroites in each class
   classDF <- data.frame(classMeteorites, numbers)
 
   return(classDF)

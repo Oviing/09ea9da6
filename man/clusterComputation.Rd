@@ -6,20 +6,16 @@
 \usage{
 clusterComputation()
 }
-\arguments{
-\item{No}{additional arguments are needed}
-}
 \description{
-The \code{clusterComputation} function cluster the different subtypes of meteroites together.
-To speed up the code the function is using parallel computation.
-In the beginning the function defines an goal character vector with all main types of meteroites.
-Then it creates an data frame with all string distances between subtype and main type of meteroite.
-The function first counts the number of columns of the string distance data frame to determine the number of repetitions.
-It then determine the number of cores in the computer and builds a cluster on each core with respect to one free core.
-The function uses \code{\link{[base]sapply}} to parallel the computation.
-The function returns the \code{classDF} data frame with the classes and the number of meteroites in each category and stops automatically the cluster.
+The \code{clusterComputation} function cluster the different subtypes of meteroites to the related main types together.
+The function contains a vector with all the main types of meteroites.
+The matrix from the \code{\link{distance}} function will be sliced into single columns.
+In each column the index position of the smalles value will be calculated.
+For each minimal value in an empty vector with the same length as the vector for the main types +1 value is added.
+The function returns a data frame made out of the main type of meteroites and the empty vector with the added values at the index position with the smalles value.
+The function uses \code{sapply} to loop the computation.
 }
 \seealso{
-\code{\link[base]{sapply()}},
-\code{\link{distance()}}
+\code{\link[base]{sapply}},
+\code{\link{distance}}
 }

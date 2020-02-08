@@ -1,7 +1,7 @@
 Package: meteroites2
 Type: Package
 Title: Analysing of confirmed meteroites, which landed on earth 
-Version: 0.1.1
+Version: 0.1.8
 Author@R: c(person("Joel", "Kischkel", role = c("aut", "cre"),
           email = "joel.kischkel@icloud.com"))
 Author: Joel Kischkel [aut, cre]
@@ -10,19 +10,13 @@ Description: This package analyse and visualize registered impacts of meteroites
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Depends: devtools,
-          usethis,
-          httr,
-          readr,
-          stringdist,
-          ggplot2,
-          maps,
-          mapproj,
-          roxygen2,
-          shiny,
-          grDevices,
-          stats,
-          shinyWidgets,
-          shinymaterial,
-          R (>= 3.1.0)
+Depends: R (>= 3.1.0)
+Imports: httr,
+         readr,
+         stringdist,
+         shiny,
+         stats,
+         ggplot2,
+         shinyWidgets,
+         shinymaterial
 RoxygenNote: 7.0.2

@@ -6,17 +6,10 @@
 \usage{
 meteroites.plotClass()
 }
-\arguments{
-\item{No}{additional argument must be used.}
-}
 \description{
 \code{meteroites.plotClass} is a function for plotting a graph of the different classes of meteroites.
 The x-axis contains the different classes. The y-axis contains the number of meteroites in each class.
 }
-\section{WARNING}{
- Before using this function, \code{\link{clusterComputation()}} must be executed.
-}
-
 \seealso{
 \link{clusterComputation}
 }

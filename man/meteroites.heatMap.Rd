@@ -6,9 +6,6 @@
 \usage{
 meteroites.heatMap()
 }
-\arguments{
-\item{No}{additional argument must be used.}
-}
 \description{
 \code{meteroites.heatMap} is a function for plotting a heatmap of the relationship between the types of meteroites in the meteroitesData file and the class of meteroites .
 }

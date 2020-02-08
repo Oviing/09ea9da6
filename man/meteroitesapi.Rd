@@ -6,11 +6,7 @@
 \usage{
 meteroitesapi()
 }
-\arguments{
-\item{No}{arguments are needed to execute the function}
-}
 \description{
 meteroitesapi is a function to downlaod the meteroites data from the NASA SODA API.
-It returns a data frame with the variable name "meteroitesData" in the global enviroment.
-IMPORTANT: The meteroitesapi function should be executed before other functions to download the data for further computation.
+It returns a data frame.
 }
