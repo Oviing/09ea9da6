@@ -51,7 +51,7 @@ meteroites.world <- function(){
     ggplot2::geom_point(data = a, ggplot2::aes(x = a$reclong, y = a$reclat), colour = "Blue", alpha = 0.5, na.rm = TRUE) +
     ggplot2::labs(x = "Long", y = "Lat") +
     ggplot2::theme_minimal()
-    #, group = group
+
 }
 #'@title meteroites.heatMap
 #'@description

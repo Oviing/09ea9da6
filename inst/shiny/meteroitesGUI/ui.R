@@ -24,8 +24,8 @@ ui <- shinymaterial::material_page(
                   side_nav_tab_id = "home_id",
 
     shinymaterial::material_column(
-      shinymaterial::material_card(img(src = "tms.jpg", height = 100, width = 200), depth = 3),
-      shinymaterial::material_card(img(src = "nasa-logo-web-rgb.png", height = 100, width = 200), depth = 3),
+      shinymaterial::material_card(img(src = "tms.jpg", height = 100, width = 200), depth = 3, color = "transparent"),
+      shinymaterial::material_card(img(src = "nasa-logo-web-rgb.png", height = 100, width = 200), depth = 3, color = "transparent"),
                                     width = 4, offset = 4
     ),
 
