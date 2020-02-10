@@ -43,9 +43,11 @@ meteroites.plotClass <- function(){
 #'@usage
 #'meteroites.world()
 #'@export
+#'@import mapproj
+#'@importFrom maps map
 meteroites.world <- function(){
-  world <- ggplot2::map_data("world")
   a <- meteroitesapi()
+  world <- ggplot2::map_data("world")
   ggplot2::ggplot()+
     ggplot2::geom_polygon(data = world, mapping = ggplot2::aes(x = world$long, y = world$lat, group = group), fill = "lightgrey", colour = "white") +
     ggplot2::geom_point(data = a, ggplot2::aes(x = a$reclong, y = a$reclat), colour = "Blue", alpha = 0.5, na.rm = TRUE) +

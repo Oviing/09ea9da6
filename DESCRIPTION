@@ -10,7 +10,7 @@ Description: This package analyse and visualize registered impacts of meteroites
 License: GPL-3
 Encoding: UTF-8
 LazyData: true
-Depends: R (>= 3.1.0), mapproj, maps
+Depends: R (>= 3.1.0)
 Imports: httr,
          readr,
          stringdist,
@@ -18,5 +18,7 @@ Imports: httr,
          stats,
          ggplot2,
          shinyWidgets,
-         shinymaterial
+         shinymaterial,
+         mapproj,
+         maps
 RoxygenNote: 7.0.2
