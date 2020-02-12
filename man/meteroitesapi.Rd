@@ -6,6 +6,9 @@
 \usage{
 meteroitesapi()
 }
+\value{
+Returns a data frame with the meteroites data.
+}
 \description{
 meteroitesapi is a function to downlaod the meteroites data from the NASA SODA API.
 It returns a data frame.

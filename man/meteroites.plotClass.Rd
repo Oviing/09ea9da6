@@ -6,6 +6,9 @@
 \usage{
 meteroites.plotClass()
 }
+\value{
+Returns a column graph with the classes of meteroites on the x-axis and the number in each class on the y-axis.
+}
 \description{
 \code{meteroites.plotClass} is a function for plotting a graph of the different classes of meteroites.
 The x-axis contains the different classes. The y-axis contains the number of meteroites in each class.

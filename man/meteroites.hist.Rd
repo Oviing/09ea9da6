@@ -10,7 +10,7 @@ meteroites.hist(l)
 \item{l}{defines the x limit of the included mass in the histogram. The limit starts from 0.}
 }
 \value{
-a histogram with the included mass between 0 and 10000.
+A histogram with the included mass between 0 and l.
 }
 \description{
 \code{meteroites.hist} is a function for plotting a histogram of the meteroits depending on the mass.

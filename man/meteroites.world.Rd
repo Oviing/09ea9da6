@@ -6,6 +6,9 @@
 \usage{
 meteroites.world()
 }
+\value{
+Returns a graph of the world with the locations of founded meteroites.
+}
 \description{
 \code{meteroites.world} is a function for plotting a world map with the location of each meteroites from the meteroitesData data frame.
 }

@@ -6,6 +6,9 @@
 \usage{
 clusterComputation()
 }
+\value{
+Returns a data frame with the classes and the number of meteroites in each class.
+}
 \description{
 The \code{clusterComputation} function cluster the different subtypes of meteroites to the related main types together.
 The function contains a vector with all the main types of meteroites.

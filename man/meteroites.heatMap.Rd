@@ -6,6 +6,9 @@
 \usage{
 meteroites.heatMap()
 }
+\value{
+Returns a heat map of the string distances between main and subtypes of meteroites. Blue colours indicated a closer distance, while red colours indicate a more far away distance.
+}
 \description{
 \code{meteroites.heatMap} is a function for plotting a heatmap of the relationship between the types of meteroites in the meteroitesData file and the class of meteroites .
 }

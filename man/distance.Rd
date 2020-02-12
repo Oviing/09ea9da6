@@ -6,6 +6,9 @@
 \usage{
 distance()
 }
+\value{
+Returns a matrix with the string distances between main and subtypes of meteroites.
+}
 \description{
 The distance function computes the string distances between main and subtypes of meteroites.
 For measuring the distance between to strings the Jaro-Winker distance is used.

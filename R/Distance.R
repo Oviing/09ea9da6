@@ -7,6 +7,8 @@
 #'This means that a low value indicates a possible similarity, but this does not mean that two objects are from the same main type.
 #'@usage
 #'distance()
+#'@return
+#'Returns a matrix with the string distances between main and subtypes of meteroites.
 #'@export
 
 distance <- function(){

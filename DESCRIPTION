@@ -1,7 +1,7 @@
 Package: meteroites2
 Type: Package
 Title: Analysing of confirmed meteroites, which landed on earth 
-Version: 0.1.8
+Version: 0.1.9
 Author@R: c(person("Joel", "Kischkel", role = c("aut", "cre"),
           email = "joel.kischkel@icloud.com"))
 Author: Joel Kischkel [aut, cre]

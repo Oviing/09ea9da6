@@ -7,6 +7,8 @@
 #'\code{\link{meteroites.heatMap}}, \code{\link{meteroites.world}} and \code{\link{meteroites.hist}} function.
 #'@usage
 #'meteroitesGUI()
+#'@return
+#'Returns a shiny app to analyse and visualize the meteroites data.
 #'@export
 meteroitesGUI <- function(){
   dir <- system.file("shiny/meteroitesGUI", package = "meteroites2")

@@ -7,7 +7,7 @@
 #'@param l defines the x limit of the included mass in the histogram. The limit starts from 0.
 #'@examples
 #'\dontrun{meteroites.hist(10000)}
-#'@return a histogram with the included mass between 0 and 10000.
+#'@return A histogram with the included mass between 0 and l.
 #'@export
 meteroites.hist <- function(l){
   a <- meteroitesapi()
@@ -25,6 +25,8 @@ meteroites.hist <- function(l){
 #'The x-axis contains the different classes. The y-axis contains the number of meteroites in each class.
 #'@usage
 #'meteroites.plotClass()
+#'@return
+#'Returns a column graph with the classes of meteroites on the x-axis and the number in each class on the y-axis.
 #'@seealso
 #'\link{clusterComputation}
 #'@export
@@ -42,6 +44,8 @@ meteroites.plotClass <- function(){
 #'\code{meteroites.world} is a function for plotting a world map with the location of each meteroites from the meteroitesData data frame.
 #'@usage
 #'meteroites.world()
+#'@return
+#'Returns a graph of the world with the locations of founded meteroites.
 #'@export
 #'@import mapproj
 #'@importFrom maps map
@@ -60,6 +64,8 @@ meteroites.world <- function(){
 #'\code{meteroites.heatMap} is a function for plotting a heatmap of the relationship between the types of meteroites in the meteroitesData file and the class of meteroites .
 #'@usage
 #'meteroites.heatMap()
+#'@return
+#'Returns a heat map of the string distances between main and subtypes of meteroites. Blue colours indicated a closer distance, while red colours indicate a more far away distance.
 #'@seealso
 #'\link{distance}
 #'@export

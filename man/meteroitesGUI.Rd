@@ -6,6 +6,9 @@
 \usage{
 meteroitesGUI()
 }
+\value{
+Returns a shiny app to analyse and visualize the meteroites data.
+}
 \description{
 A function to run the meteroites2 shiny application. It allows to analyse and visualize the meteroites data.
 The shiny application contains the \code{\link{clusterComputation}}, \code{\link{meteroites.plotClass}},

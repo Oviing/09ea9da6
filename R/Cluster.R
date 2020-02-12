@@ -9,6 +9,8 @@
 #'The function uses \code{sapply} to loop the computation.
 #'@usage
 #'clusterComputation()
+#'@return
+#'Returns a data frame with the classes and the number of meteroites in each class.
 #'@seealso
 #'\code{\link[base]{sapply}},
 #'\code{\link{distance}}

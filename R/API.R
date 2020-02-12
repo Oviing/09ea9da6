@@ -5,6 +5,8 @@
 #'It returns a data frame.
 #'@usage
 #'meteroitesapi()
+#'@return
+#'Returns a data frame with the meteroites data.
 #'@export
 meteroitesapi <- function(){
   weburl <- "https://data.nasa.gov/resource/gh4g-9sfh.csv"
